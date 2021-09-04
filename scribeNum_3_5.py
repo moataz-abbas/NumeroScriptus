@@ -24,7 +24,7 @@ class BoxLayoutExample(BoxLayout):
         							
         	VB3 = BoxLayout(
         								orientation='horizontal',
-        								size_hint=(1,.05))
+        								size_hint=(0.4,.05))
         							
         	HB= BoxLayout(
         						orientation='horizontal', 										size_hint=(1,.1))
