@@ -115,7 +115,7 @@ class MainLayout(BoxLayout):
             
             self.footer = MyLabel(
             text='Produced by Moataz - abbasmd.com',size_hint= (1, 0.2),
-            font_size= '18sp', color=[0.25,0.25,.30,1])
+            font_size= '16sp', color=[0.25,0.25,.30,1])
             self.footer.col = (0.6, 0.6, .6, 1)
             
             lyt_title.add_widget(self.title)
@@ -206,11 +206,12 @@ class DrawInput(Widget):
     def undo_save(self, *args):
                if self.fl:
                    os.remove(self.fl[-1])
-                   toast(f'Previous number {self.numlst[-1]} card is deleted')
+                   toast(f'Previous number "{self.numlst[-1]}" card is deleted.')
                    self.fl.pop()
                    self.numlst.pop()
+                   toast(f'Remaining {len(self.numlst)} cards saved')
                else:
-               	toast('No more files saved!')
+               	toast('No cards to delete!')
             
         
     def background(self, *args):
