@@ -163,6 +163,7 @@ class DrawInput(Widget):
             self.background()
             self.touchdown= False
             self.widget_size()
+            self.numlst=[]
     
     def on_touch_down(self, touch):
            if self.collide_point(touch.x, touch.y):
@@ -196,19 +197,20 @@ class DrawInput(Widget):
             self.gen_num()
 
     def save_image(self):
-            self.filename= f'images/{self.numx}/no_{self.numx}_s{self.rser}.png'
-            #self.filename= f'images/no_{self.numx}_s{self.rser}.png'
+            self.filename = os.path.join('images', str(self.numx), f'num_{self.numx}_s{self.rser}.png')
+            self.numlst.append(self.numx)
             self.fl.append(self.filename)
-            print(self.fl)
+            print(self.numlst)
             self.export_to_png(filename=self.                                                            filename)
             
     def undo_save(self, *args):
                if self.fl:
                    os.remove(self.fl[-1])
-                   toast(f'{self.fl[-1]} deleted')
+                   toast(f'Previous number {self.numlst[-1]} card is deleted')
                    self.fl.pop()
+                   self.numlst.pop()
                else:
-               	toast('No more files')
+               	toast('No more files saved!')
             
         
     def background(self, *args):
@@ -233,7 +235,7 @@ class NumScriptusApp(MDApp):
     def build(self):
         #dir = os.path.join('', 'images')
         for i in range(10):
-        	nd= os.path.join('images',f'{i}')
+        	nd= os.path.join('images', f'{i}')
         	if not os.path.exists(nd):
         		os.makedirs(nd)
         		print(nd,' made')
